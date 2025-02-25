@@ -1,0 +1,60 @@
+version:  "3.7"
+
+services:
+  genai:
+    container_name: genai
+    ports:
+      - "8000:8000"
+    networks:
+      - ollama-net
+    build:
+      context: .
+      dockerfile: Dockerfile
+
+
+  ollama:
+    build: ollama
+    ports:
+      - 11434:11434
+    volumes:
+      - genai-vol:/ollama
+    networks:
+      - ollama-net
+    entrypoint: ["/usr/bin/bash", "/ollama_script.sh"]
+
+networks:
+  ollama-net:
+    driver: bridge
+volumes:
+  genai-vol:
+    driver: local
+
+
+
+# version: "3"
+
+# services:
+#   web:
+#     build: fastapi
+#     ports:
+#       - 8000:8000
+#     volumes:
+#       - ./fastapi:/app
+#     networks:
+#       - tutorial-net
+#   ollama:
+#     build: ollama
+#     ports:
+#       - 11434:11434
+#     volumes:
+#       - tutorial-vol:/ollama
+#     networks:
+#       - tutorial-net
+#     entrypoint: ["/usr/bin/bash", "/pull-llama3.sh"]
+
+# networks:
+#   tutorial-net:
+#     driver: bridge
+# volumes:
+#   tutorial-vol:
+#     driver: local

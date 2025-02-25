@@ -1,0 +1,21 @@
+langchain
+langchain_openai 
+langchain_core
+langchain_community
+python-dotenv
+langserve
+fastapi
+uvicorn
+huggingface_hub
+sse_starlette
+streamlit
+langsmith
+langchain
+python-dotenv
+pydantic
+fastapi[standard]
+langchain-groq
+mysql-connector-python
+SQLAlchemy
+# langgraph==0.0.8
+langchainhub
